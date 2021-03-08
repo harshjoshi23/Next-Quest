@@ -1,0 +1,13 @@
+p {
+    text-align: center;
+    margin: 5px;
+}
+.with-icon {
+    display: flex;
+    align-items: center;
+}
+
+div { 
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

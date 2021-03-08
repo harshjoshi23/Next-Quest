@@ -1,0 +1,62 @@
+<div
+  class="container"
+  fxLayout
+  fxLayout.xs="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="0"
+>
+  <div fxFlex="20%"></div>
+  <!--  Middle section -->
+  <div fxFlex>
+    <div *ngIf="activity$ |async as activity">
+      <h1>
+        <b> {{ activity.name }} </b>
+      </h1>
+      <img [src]="activity.card_image" height="400" />
+      <div fxLayout="row" class="activity-tags">
+        <mat-chip-list class="chip-list">
+          <mat-chip>
+            {{ activity.duration }}
+          </mat-chip>
+          <mat-chip>
+            {{ activity.difficulty }}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+
+    <div *ngIf="trek_detail | async">
+      <div *ngFor="let section of trek_detail | async">
+        <mat-card>
+          <h1>
+            <b>
+              {{ section.section_name }}
+            </b>
+          </h1>
+          <div *ngIf="section.section_media">
+            <img [src]="section.section_media" height="400" />
+          </div>
+          <div [innerHTML]="section.section_text"></div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+  <div fxFlex="20%">
+    <div *ngIf="activity$ | async as activity">
+    <app-booknow [activity]="activity"></app-booknow>
+    </div>
+    <b> Other people also viewed </b>
+    <div *ngFor="let related_trek of related_treks | async">
+      <mat-card class="mat-elevation-z5 rt-style">
+        <mat-card-header>
+          <mat-card-title>{{ related_trek.name }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <img mat-card-image [src]="related_trek.card_image" />
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

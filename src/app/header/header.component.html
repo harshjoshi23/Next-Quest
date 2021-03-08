@@ -1,0 +1,67 @@
+<mat-toolbar fxLayout="row">
+  <a href="#">
+    <img height="70" [src]="logo" />
+  </a>
+  <button mat-button [matMenuTriggerFor]="destinations" fxHide.xs>
+    Destinations
+  </button>
+  <mat-menu #destinations="matMenu">
+    <button mat-menu-item>
+      <span>Destination 1 </span>
+    </button>
+    <button mat-menu-item>
+      <span> Destination 2 </span>
+    </button>
+  </mat-menu>
+  <!-- Activities -->
+  <button mat-button [matMenuTriggerFor]="activities" fxHide.xs>
+    Activities
+  </button>
+  <mat-menu #activities="matMenu">
+    <button mat-menu-item>
+      <span> Activity 1 </span>
+    </button>
+    <button mat-menu-item>
+      <span> Activity 2 </span>
+    </button>
+  </mat-menu>
+
+  <!-- Upcoming Activities -->
+
+  <button mat-button [matMenuTriggerFor]="upcoming_activities" fxHide.xs>
+    Upcoming Activities
+  </button>
+  <mat-menu [hasBackdrop]="false" #upcoming_activities="matMenu">
+    <button mat-menu-item>
+      <span> Activity 1 </span>
+    </button>
+    <button mat-menu-item>
+      <span> Activity 2 </span>
+    </button>
+  </mat-menu>
+
+  <span class="example-spacer"></span>
+  <div *ngIf="loggedIn; else loggedout">
+    <button mat-button [matMenuTriggerFor]="menu">
+      {{ userName }}
+    </button>
+    <mat-menu #menu="matMenu">
+      <div *ngIf="isOperator">
+        <button mat-menu-item (click)="onCreateActivity()">
+          <mat-icon>logout</mat-icon>
+          <span>Manage Activity</span>
+        </button>
+      </div>
+      <button mat-menu-item (click)="onLogout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </div>
+  <ng-template #loggedout>
+    <button mat-button (click)="onLogin()">
+      <mat-icon>login</mat-icon>
+      <span>Login</span>
+    </button>
+  </ng-template>
+</mat-toolbar>

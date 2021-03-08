@@ -1,0 +1,19 @@
+.booking-form {
+    min-width: 150px;
+    max-width: 780px;
+    width: 100%; 
+  }
+
+.booking-full-width {
+  width: 45%;
+}
+.traveller-card {
+  max-width: 800px;
+}
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}

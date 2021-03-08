@@ -1,0 +1,8 @@
+.content {
+  padding: 16px;
+}
+
+.content > mat-card {
+  width: auto;
+}
+P { text-align: center }

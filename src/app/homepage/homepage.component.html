@@ -1,0 +1,41 @@
+<!-- <div>
+  <img height="400px" mat-card-image src="./../assets/img/rish-agarwal-wDmhNV3QFQk-unsplash.jpg" />
+</div> -->
+<mat-carousel
+  timings="250ms ease-in"
+  [autoplay]="true"
+  interval="5000"
+  color="accent"
+  maxWidth="auto"
+  proportion="35"
+  slides="5"
+  [loop]="true"
+  [hideArrows]="true"
+  [hideIndicators]="true"
+  [useKeyboard]="true"
+  [useMouseWheel]="false"
+  orientation="ltr"
+>
+  <mat-carousel-slide
+    #matCarouselSlide
+    *ngFor="let slide of slides; let i = index"
+    [image]="slide.image"
+    overlayColor="#00000040"
+    [hideOverlay]="false"
+  ></mat-carousel-slide>
+</mat-carousel>
+<h1 style="padding: 2em 2em 0 0;border-width: 2px;">
+  <p>
+    <b> Plan your Adventure </b>
+  </p>
+</h1>
+<div class="content"fxLayout="row wrap"   fxLayoutGap="16px grid">
+  <div
+    fxFlex="25%"
+    fxFlex.xs="100%"
+    fxFlex.sm="33%"
+    *ngFor="let activity of filteredActivities"
+  >
+    <app-activity [activity]="activity"></app-activity>
+  </div>
+</div>

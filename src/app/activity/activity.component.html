@@ -1,0 +1,48 @@
+<mat-card class="card" height="200">
+  <mat-card-content>
+    <img mat-card-image [src]="activity.card_image" height="200" />
+    <b>{{ activity.name }}</b>
+    <div fxLayout="row">
+      <div class="icon-text">
+        <ngb-rating
+          [max]="5"
+          [(rate)]="currentRate"
+          [readonly]="true"
+        ></ngb-rating>
+      </div>
+      <button
+        mat-button
+        matTooltip="Details and booking"
+        mat-button
+        (click)="onClickDetail()"
+      >
+        Details
+      </button>
+      <button mat-raised-button color="primary" (click)="onClickBookNow()">
+        Book Now
+      </button> 
+    </div>
+  </mat-card-content>
+  <!-- <mat-card-actions> -->
+  <div fxLayout="column">
+    
+    <div fxLayout="row wrap">
+      <button mat-raised-button class="light-button">
+        <mat-icon matTooltip="Including accomodation"> hotel </mat-icon>
+      </button>
+      <button mat-raised-button class="light-button">
+        <mat-icon matTooltip="Delicious local cuisine included">
+          local_dining
+        </mat-icon>
+      </button>
+
+      <button mat-raised-button class="light-button">
+        <mat-icon matTooltip="Expert guided trek"> follow_the_signs </mat-icon>
+      </button>
+      <button mat-raised-button class="light-button">
+        <mat-icon matTooltip="Breathtaking views"> photo_camera </mat-icon>
+      </button>
+    </div>
+  </div>
+  <!-- </mat-card-actions> -->
+</mat-card>

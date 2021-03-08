@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-content>
+    <p>
+      <b>
+        {{ activity.name }}
+      </b>
+    </p>
+    <div class="with-icon">
+      <mat-icon>star</mat-icon>
+      {{ activity.stars }} (113 Ratings)
+    </div>
+    <div class="with-icon">
+      <i class="fa fa-sun-o" aria-hidden="true"></i>
+      2 Days |
+      <i class="fa fa-moon-o" aria-hidden="true"></i>
+      2 Nights
+    </div>
+    <div>
+      Starting from
+      <div style="color: red">3,499 Per Person.</div>
+    </div>
+
+    <button mat-raised-button color="primary" (click)="onClickBookNow()">Book Now </button>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,17 @@
+.icon-text {
+  display: flex;
+  align-items: center;
+}
+
+.light-button {
+    height: 35px; 
+    width: 35px;
+    border: 2px solid blue !important;
+    background-color: ghostwhite;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+} 
+.chip-list{
+  margin-top: 0px;
+}

@@ -1,0 +1,120 @@
+<mat-horizontal-stepper #stepper>
+  <mat-step label="Select Dates">
+    <div class="booking-form">
+      <mat-label> Select date </mat-label>
+      <mat-form-field appearance="fill">
+      <mat-select matNativeControl required [(value)]="selectedDate">
+        <mat-option *ngFor="let plan of available_plans" [value]="plan">
+          {{plan.start_date | date:'shortDate'}} - {{plan.end_date | date:'shortDate'}} 
+        </mat-option>
+      </mat-select>
+      </mat-form-field> 
+      <button mat-raised-button color="primary" matStepperNext>
+        Next
+        <mat-icon> keyboard_arrow_right </mat-icon>
+      </button>
+    </div>
+  </mat-step>
+  <mat-step [stepControl]="bookingForm" label="Traveller details">
+    <form [formGroup]="bookingForm" class="booking-form">
+      <div formArrayName="travellers">
+        <div
+          style="margin: 10px"
+          *ngFor="let traveller of travellers.controls; index as i"
+        >
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div fxFlex></div>
+              <button mat-mini-fab color="primary" (click)="removeTraveller(i)">
+                <mat-icon> clear </mat-icon>
+              </button>
+            </mat-card-header>
+            <mat-card-content>
+              <ng-container [formGroup]="traveller">
+                <div fxLayout="row">
+                  <mat-form-field class="booking-full-width">
+                    <mat-label> Full name: </mat-label>
+                    <input matInput value="" formControlName="fullName" />
+                  </mat-form-field>
+                  <mat-form-field class="booking-full-width">
+                    <mat-label> Age: </mat-label>
+                    <input matInput value="" formControlName="age" />
+                  </mat-form-field>
+                </div>
+                <div fxLayout="row">
+                  <mat-form-field class="booking-full-width">
+                    <mat-label> Height(cm): </mat-label>
+                    <input matInput value="" formControlName="height" />
+                  </mat-form-field>
+                  <mat-form-field class="booking-full-width">
+                    <mat-label> Weight(Kg): </mat-label>
+                    <input matInput value="" formControlName="weight" />
+                  </mat-form-field>
+                </div>
+                <div fxLayout="row">
+                  <mat-form-field class="booking-full-width">
+                    <mat-label> email: </mat-label>
+                    <input matInput value="" formControlName="email" />
+                  </mat-form-field>
+                  <mat-form-field class="booking-full-width">
+                    <mat-label> Emergency Contact: </mat-label>
+                    <input
+                      matInput
+                      value=""
+                      formControlName="emergency_contact"
+                    />
+                  </mat-form-field>
+                </div>
+              </ng-container>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      <button mat-button color="accent" (click)="addTraveller()">
+        <mat-icon> add </mat-icon>
+      </button>
+      <mat-label> Add traveller </mat-label>
+      <div>
+        <button mat-raised-button color="primary" matStepperNext>
+          <mat-icon> keyboard_arrow_left </mat-icon>
+          Back
+        </button>
+        <button mat-raised-button color="primary" matStepperNext>
+          Next
+          <mat-icon> keyboard_arrow_right </mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step label="Payment">
+    <div style="margin: 0 auto">
+      <b>
+        <p>Booking Summary</p>
+      </b>
+      <form [formGroup]="bookingForm" class="booking-form">
+        <div>
+          <div formArrayName="travellers">
+            <b> Traveller Details </b>
+            <mat-list
+              *ngFor="let traveller of travellers.controls; let i = index"
+              [formGroupName]="i"
+            >
+              <div>
+                <b> Traveller {{ i + 1 }} </b>
+              </div>
+              <p>Name : {{ traveller.value.fullName }}</p>
+              <p>email : {{ traveller.value.email }}</p>
+              <p>height : {{ traveller.value.height }}</p>
+              <mat-divider></mat-divider>
+            </mat-list>
+          </div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+        <button mat-raised-button color="primary" (click)="onSubmit()">
+          PayNow
+        </button>
+      </form>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
